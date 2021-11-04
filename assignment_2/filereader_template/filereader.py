@@ -20,7 +20,7 @@ class FileReader:
     # counts the number of lines in the file and returns as an int
     # note that this value will be 1 more than the amount of questions because of the header line
     def get_line_amount(self):
-            with open(self.filename) as f: 
+            with open(self.__filename) as f: 
                 num_of_lines = 0 # counter variable
                 for line in f:
                     num_of_lines += 1 # add 1 to the counter for each line
@@ -70,16 +70,14 @@ class FileReader:
         return lines_as_string               
 
 class QuestionFileReader(FileReader):
+    # child class inherits __init__() form parent class
 
-    
-    def __init__(self, filename):
-        self.__filename = filename
-        print("Instance of QuestionFileReader class created")
-
+    # returns a string representation of the instance
     def __str__(self):
-        description = "This is an instance of the QuestionFileReader class.\nIt is a child class of FileReader.\nIt reads questions from %s" % self.__filename
+        description = "This is an instance of the QuestionFileReader class.\nIt is a child class of FileReader.\nIt reads questions from %s" % self.filename
         return description
-
+    
+    # uses the read_file() method in the parent class and returns the questions in dictionary format
     def all_dictionary_questions(self):
         file_as_string = self.read_file() # using method defined in the parent class to get all questions as string
         file_as_list = file_as_string.splitlines()
@@ -92,6 +90,7 @@ class QuestionFileReader(FileReader):
                 }
         return file_as_dict
 
+    # uses the read_random_range() method in the parent class and returns the questions in dictionary format
     def random_dictionary_questions(self):
         random_as_string = self.read_random_range() # using the method defined in the parent class to get random lines
         random_as_list = random_as_string.splitlines()
@@ -105,3 +104,5 @@ class QuestionFileReader(FileReader):
                 }
             question_number += 1 # increment the question number for the next iteration
         return random_as_dict
+    
+    
