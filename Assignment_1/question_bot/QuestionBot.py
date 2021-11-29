@@ -102,7 +102,7 @@ class QuestionBot:
     
     # Resets the game
     def reset(self):
-        self.__questionNumber = 1
+        self.__question_number = 1
 
     # To be called at the end of the game
     def terminate_messsage(self):
